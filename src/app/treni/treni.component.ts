@@ -10,6 +10,7 @@ import { LISTAMETRO } from './../dati/metroremoti';
     <div class="lista-treni">
       <ca-metro
         *ngFor="let metro of listaMetro"
+        (inPartenza)="partiti($event)"
         [datiIn]="metro"
         [ora]="now"
         (click)="setMetro(metro)"
@@ -24,18 +25,23 @@ export class TreniComponent implements OnInit {
 
   trenoSelezionato!: Metro;
   now!: number;
-  aprireDettaglio!: string;
+
+  treniPartiti!: string;
 
   constructor() {
     this.listaMetro = [];
+    this.treniPartiti = "";
+    this.now = new Date().getTime();
     
   }
   ngOnInit() {
     this.listaMetro = LISTAMETRO;
   }
   setMetro(t:any) {
-    this.aprireDettaglio= 'display-block'
     this.trenoSelezionato = t;
 
+  }
+  partiti(id:string) {
+    this.treniPartiti += "|" + id;
   }
 }
