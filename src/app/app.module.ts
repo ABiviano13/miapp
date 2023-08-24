@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MenuComponent } from './menu/menu.component';
+import { TreniComponent } from './treni/treni.component';
+import { MetroComponent } from './metro/metro.component';
+import { MmssPipe } from './mmss.pipe';
+import { DettagliotrenoComponent } from './treni/dettagliotreno/dettagliotreno.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    TreniComponent,
+    MetroComponent,
+    MmssPipe,
+    DettagliotrenoComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
