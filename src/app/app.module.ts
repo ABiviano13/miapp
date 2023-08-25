@@ -10,15 +10,33 @@ import { PreferitiComponent } from './preferiti/preferiti.component'
 import { LoginComponent } from './login/login.component'
 import { MmssPipe } from './mmss.pipe';
 import { DettagliotrenoComponent } from './treni/dettagliotreno/dettagliotreno.component';
+import { DettaglioComponent } from './treni/dettagliotreno/dettaglio.component';
+import { TrenoRossoComponent } from './treni/dettagliotreno/trenoRosso/trenoRosso.component';
+import { TrenoGialloComponent } from './treni/dettagliotreno/trenoGiallo/trenoGiallo.component';
+import { TrenoVerdeComponent } from './treni/dettagliotreno/trenoVerde/trenoVerde.component';
+import { Error404Component } from './error404/error404.component';
+import { TreniService } from './service/treni.service';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: '', component: TreniComponent},
+      {path: 'inArrivo', component: TreniComponent},
+      {path:'inArrivo/dettaglio', component: DettagliotrenoComponent,
+        children: [
+          {path: 'rosso', component: TrenoRossoComponent},
+          {path: 'giallo', component: TrenoGialloComponent},
+          {path: 'verde', component: TrenoVerdeComponent},
+          {path: ':id', component: DettaglioComponent},
+          {path: '', redirectTo:'/error', pathMatch: 'full'},
+        ]
+
+      },
       {path: 'preferiti', component: PreferitiComponent},
       {path: 'login', component: LoginComponent},
+      {path: '', redirectTo: '/inArrivo', pathMatch: 'full'},
+      {path: '**', component: Error404Component}
     ])
   ],
   declarations: [
@@ -28,10 +46,14 @@ import { DettagliotrenoComponent } from './treni/dettagliotreno/dettagliotreno.c
     MetroComponent,
     MmssPipe,
     DettagliotrenoComponent,
+    DettaglioComponent,
+    TrenoRossoComponent,
+    TrenoGialloComponent,
+    TrenoVerdeComponent,
     PreferitiComponent,
     LoginComponent
   ],
-  providers: [],
+  providers: [TreniService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

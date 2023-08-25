@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
+  @Input() menuBack!: string;
   // definiamo la logica del componente ed eventuali operazioni di inizializzazione dati
 
   //definiamo 3 proprietà del nostro menu (typescript)

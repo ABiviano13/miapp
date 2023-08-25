@@ -4,8 +4,10 @@ import { Metro } from './../model/metro.model';
 @Component({
     selector: 'ca-preferiti',
     template: `
+    <app-menu></app-menu>
     <div>
-        <p> Preferiti </p>
+        <h1> Preferiti </h1>
+        // lista dei preferiti con elenco chat
     </div>
     `
 })

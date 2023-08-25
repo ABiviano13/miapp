@@ -1,7 +1,7 @@
 <nav>
-  <ul>
+  <ul *ngIf="menuBack != 'ON'; else showBack">
     <li>
-      <a routerLink="['']" >{{ link_menu_1 }}</a>
+      <a routerLink="/inArrivo">{{ link_menu_1 }}</a>
     </li>
     <li>
       <a routerLink="/preferiti">{{ link_menu_2 }}</a>
@@ -10,4 +10,11 @@
       <a routerLink="/login">{{ link_menu_3 }}</a>
     </li>
   </ul>
+  <ng-template #showBack>
+    <ul>
+      <li>
+        <a routerLink="/inArrivo"> Chat </a>
+      </li>
+    </ul>
+  </ng-template>
 </nav>
