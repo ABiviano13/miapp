@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -21,14 +22,15 @@ import { TreniService } from './service/treni.service';
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: 'inArrivo', component: TreniComponent},
       {path:'inArrivo/dettaglio', component: DettagliotrenoComponent,
         children: [
-          {path: 'rosso', component: TrenoRossoComponent},
-          {path: 'giallo', component: TrenoGialloComponent},
-          {path: 'verde', component: TrenoVerdeComponent},
-          {path: ':id', component: DettaglioComponent},
+          {'path': 'ASD', component: TrenoRossoComponent},
+          {'path': 'BFD', component: TrenoGialloComponent},
+          {'path': 'AKE', component: TrenoVerdeComponent},
+          {'path': ':id', component: DettagliotrenoComponent},
           {path: '', redirectTo:'/error', pathMatch: 'full'},
         ]
 

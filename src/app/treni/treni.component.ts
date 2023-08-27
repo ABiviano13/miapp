@@ -1,11 +1,9 @@
 import { TreniService } from '../service/treni.service';
+import { MetroService } from '../service/metro.service';
 import { Component, OnInit } from '@angular/core';
 import { Metro } from './../model/metro.model';
 import { Router } from '@angular/router';
 
-
-//importo i dati remoti
-import { LISTAMETRO } from './../dati/metroremoti';
 
 @Component({
   selector: 'app-treni',
@@ -19,16 +17,16 @@ import { LISTAMETRO } from './../dati/metroremoti';
         [ora]="now"
         (click)="setMetro(metro.idt)"
       ></ca-metro>
-      <p>{{ treniPartiti }} </p>
-      <ca-dettaglio-treno></ca-dettaglio-treno>
+      <div *ngIf=""errorMsg> {{ errorMsg }}</div>
     </div>
-  `,
-  styleUrls: ['./treni.component.css'],
+  <p>{{ treniPartiti }}</p>
+  `
 })
 export class TreniComponent implements OnInit {
   listaMetro: Metro[];
   now!: number;
   treniPartiti!: string;
+  errorMsg!: any;
 
   constructor(private router: Router, private treniService: TreniService) {
     this.listaMetro = [];
@@ -37,7 +35,15 @@ export class TreniComponent implements OnInit {
     
   }
   ngOnInit() {
-    this.listaMetro = this.treniService.getListaMetro();
+    this.getListaMetroObservable();
+  }
+  getListaMetroObservable() {
+    this.treniService.getListaMetroObservable()
+                      .subscribe(
+                        (risp:any) => this.listaMetro = risp,
+                        (error:any) => this.errorMsg = error
+                      );
+                      
   }
   setMetro(id:string) {
     this.router.navigate(['inArrivo/dettaglio', id]);

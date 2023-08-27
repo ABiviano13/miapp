@@ -11,7 +11,6 @@ import { Metro } from 'src/app/model/metro.model';
       <p> ID: {{treno.idt}} </p>
     </div>
   `,
-  styleUrls: ['./treni.component.css'],
 })
 export class DettaglioComponent implements OnInit {
 
@@ -19,10 +18,9 @@ export class DettaglioComponent implements OnInit {
     treno!: Metro;
   
     constructor(private route: ActivatedRoute, private treniService: TreniService) {
-      
+      this.idTreno = this.route.snapshot.paramMap.get('id')!;
     }
     ngOnInit(){
-      this.idTreno = this.route.snapshot.paramMap.get('id')!;
       // this.getDettaglioMetro(this.idTreno);
     }
 
